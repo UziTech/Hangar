@@ -193,7 +193,7 @@ public class AppsWidget extends AppWidgetProvider {
 
         int gridSize = (appsNoH * appsNoW);
         // numOfIcons should not exceed 35 (CPU reasons, etc)
-        int numOfIcons = (appsNoH * appsNoW > Settings.TASKLIST_QUEUE_SIZE) ? Settings.TASKLIST_QUEUE_SIZE : (appsNoH * appsNoW);
+        int numOfIcons = gridSize;//(gridSize > Settings.TASKLIST_QUEUE_SIZE) ? Settings.TASKLIST_QUEUE_SIZE : gridSize;
 
         if (autoHeight && !appsNoByWidgetSize) {
             // Manual app # is selected.  Icons are split automatically from height.
