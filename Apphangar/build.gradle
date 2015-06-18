@@ -9,7 +9,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.+'
+        classpath 'com.android.tools.build:gradle:1.0.1'
     }
 }
 
@@ -33,25 +33,8 @@ android {
         abortOnError true
         disable 'MissingTranslation', 'GradleDependency', 'SmallSp', 'ExportedPreferenceActivity', 'TypographyEllipsis', 'IconMissingDensityFolder', 'ClickableViewAccessibility', 'IconDensities', 'OldTargetApi'
     }
-    buildTypes {
-        release {
-            runProguard true
-            proguardFiles 'proguard-android.txt'
-        }
-        applicationVariants.all { variant ->
-            appendVersionNameVersionCode(variant, defaultConfig, manifestParser)
-        }
-    }
 }
 
-def appendVersionNameVersionCode(variant, defaultConfig, manifestParser) {
-    def versionName = manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
-    if(variant.buildType.name == android.buildTypes.debug.name) {
-        versionName += "-debug"
-    }
-    def file = variant.outputFile
-    variant.outputFile = new File(file.parent, "Hangar.apk".replace(".apk", "-" + versionName + ".apk"))
-}
 
 dependencies {
     compile 'com.android.support:support-v13:19.+'
